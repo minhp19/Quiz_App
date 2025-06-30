@@ -49,6 +49,10 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const timerElement = document.getElementById("timer");
+
+let timeLeft = 10;
+let countdownInterval;
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -76,9 +80,11 @@ function showQuestion() {
         }
         button.addEventListener("click", selectAnswer);
     });
+    startTimer();
 }
 
 function resetState() {
+     resetTimer(); 
     nextButton.style.display = "none";
     while(answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
@@ -86,6 +92,7 @@ function resetState() {
 }
 
 function selectAnswer(e) {
+    resetTimer(); 
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
     if(isCorrect) {
@@ -104,10 +111,11 @@ function selectAnswer(e) {
 }
 
 function showScore() {
+    resetTimer(); 
     resetState();
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Again";
-    nextButton.style.display = "Block";
+    nextButton.style.display = "block";
 }
 
 function handleNextButton() {
@@ -126,5 +134,42 @@ nextButton.addEventListener("click", () => {
         startQuiz();
     }
 });
+
+// Them phan dem 
+function startTimer () {
+    timeLeft = 10;
+    timerElement.innerHTML = `⏱ ${timeLeft}`;
+    countdownInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.innerHTML = `⏱ ${timeLeft}`;
+        
+        if (timeLeft <= 3) {
+            timerElement.style.color = "red";
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            autoMoveToNext();
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(countdownInterval);
+    timerElement.innerHTML = "";
+}
+
+function autoMoveToNext() {
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true") {
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
+
+
 
 startQuiz();
