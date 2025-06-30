@@ -4,7 +4,7 @@ const questions = [
         answers: [
             { text: "Nó căn theo vị trí của nó", correct: false},
             { text: "Nó sẽ căn theo phần tử cha gần nhất", correct: false},
-            { text: "Nó sẽ căn theo thẻ <html> hoặc <body>", correct: True},
+            { text: "Nó sẽ căn theo thẻ <html> hoặc <body>", correct: true},
             { text: "Trình duyệt sẽ báo lỗi", corect: false},
         ]
     },
@@ -47,7 +47,7 @@ const questions = [
 ];
 
 const questionElement = document.getElementById("question");
-const answeButton = document.getElementById("answer-buttons");
+const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
@@ -61,6 +61,7 @@ function startQuiz() {
 }
 
 function showQuestion() {
+    resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -69,6 +70,16 @@ function showQuestion() {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
-        answeButton.appendChild(button);
+        answerButtons.appendChild(button);
     });
 }
+
+function resetState() {
+    nextButton.style.display = "none";
+    while(answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+
+startQuiz();
