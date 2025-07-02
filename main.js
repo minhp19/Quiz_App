@@ -97,7 +97,7 @@ function selectAnswer(e) {
     const isCorrect = selectedBtn.dataset.correct === "true";
     if(isCorrect) {
         selectedBtn.classList.add("correct");
-        score++;
+        score += timeLeft;
     } else {
         selectedBtn.classList.add("incorrect");
     }
@@ -116,6 +116,8 @@ function showScore() {
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Again";
     nextButton.style.display = "block";
+    questionElement.innerHTML = `🎉 Bạn được ${score} điểm từ tối đa ${questions.length * 10}`;
+
 }
 
 function handleNextButton() {
@@ -157,6 +159,7 @@ function startTimer () {
 function resetTimer() {
     clearInterval(countdownInterval);
     timerElement.innerHTML = "";
+    timerElement.style.color = "black";
 }
 
 function autoMoveToNext() {
@@ -168,8 +171,5 @@ function autoMoveToNext() {
     });
     nextButton.style.display = "block";
 }
-
-
-
 
 startQuiz();
