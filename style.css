@@ -76,3 +76,10 @@ body {
 .incorrect {
     background: #ff9393;
 }
+
+.explanation {
+  margin-top: 10px;
+  font-style: italic;
+  color: #444;
+  line-height: 1.4;
+}
