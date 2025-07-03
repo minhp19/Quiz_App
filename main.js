@@ -180,7 +180,7 @@ function showScore() {
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Again";
     nextButton.style.display = "block";
-    questionElement.innerHTML = `🎉 Bạn được ${score} điểm từ tối đa ${questions.length * 10}`;
+    questionElement.innerHTML = `🎉 Bạn được ${score} điểm từ tối đa ${questions.length * 15}`;
 
 }
 
