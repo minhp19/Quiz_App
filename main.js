@@ -110,7 +110,7 @@ const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const timerElement = document.getElementById("timer");
 
-let timeLeft = 15;
+let timeLeft = 20;
 let countdownInterval;
 
 let currentQuestionIndex = 0;
@@ -180,7 +180,7 @@ function showScore() {
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Again";
     nextButton.style.display = "block";
-    questionElement.innerHTML = `🎉 Bạn được ${score} điểm từ tối đa ${questions.length * 15}`;
+    questionElement.innerHTML = `🎉 Bạn được ${score} điểm từ tối đa ${questions.length * 20}`;
 
 }
 
@@ -203,7 +203,7 @@ nextButton.addEventListener("click", () => {
 
 // Them phan dem 
 function startTimer () {
-    timeLeft = 15;
+    timeLeft = 20;
     timerElement.innerHTML = `⏱ ${timeLeft}`;
     countdownInterval = setInterval(() => {
         timeLeft--;
