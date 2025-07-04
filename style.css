@@ -83,3 +83,15 @@ body {
   color: #444;
   line-height: 1.4;
 }
+
+#screen-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(243, 51, 51, 0.3);
+    pointer-events: none;
+    display: none;
+}
+

@@ -158,8 +158,16 @@ function selectAnswer(e) {
     if(isCorrect) {
         selectedBtn.classList.add("correct");
         score += timeLeft;
+
+        confetti({
+            particleCount: 150,
+            spread: 100,
+            origin: { y: 0.6 }
+        });
+
     } else {
         selectedBtn.classList.add("incorrect");
+        flashScreen();
     }
     Array.from (answerButtons.children).forEach(button => {
         if(button.dataset.correct === "true") {
@@ -173,6 +181,14 @@ function selectAnswer(e) {
     explanationElement.innerText = questions[currentQuestionIndex].explanation;
 
 }
+    function flashScreen() {
+    const flash = document.getElementById("screen-flash");
+    flash.style.display = "block";
+    setTimeout(() => {
+        flash.style.display = "none";
+    }, 300);
+}
+
 
 function showScore() {
     resetTimer(); 
@@ -233,6 +249,9 @@ function autoMoveToNext() {
         }
         button.disabled = true;
     });
+        const explanationElement = document.getElementById("explanation");
+    explanationElement.innerText = questions[currentQuestionIndex].explanation;
+
     nextButton.style.display = "block";
 }
 
